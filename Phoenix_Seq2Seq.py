@@ -20,12 +20,12 @@ from torch.nn.utils.rnn import pad_sequence
 import pandas as pd
 
 # Path setting
-train_video_root = "/mnt/data/public/datasets/phoenix2014-release/phoenix-2014-multisigner/features/fullFrame-210x260px/train"
-dev_video_root = "/mnt/data/public/datasets/phoenix2014-release/phoenix-2014-multisigner/features/fullFrame-210x260px/dev"
-test_video_root = "/mnt/data/public/datasets/phoenix2014-release/phoenix-2014-multisigner/features/fullFrame-210x260px/test"
-train_anno_file = "/mnt/data/public/datasets/phoenix2014-release/phoenix-2014-multisigner/annotations/manual/train.corpus.csv"
-dev_anno_file = "/mnt/data/public/datasets/phoenix2014-release/phoenix-2014-multisigner/annotations/manual/dev.corpus.csv"
-test_anno_file = "/mnt/data/public/datasets/phoenix2014-release/phoenix-2014-multisigner/annotations/manual/test.corpus.csv"
+train_video_root = "/diskC/tongyao/phoenix2014-release/phoenix-2014-multisigner/features/fullFrame-210x260px/train"
+dev_video_root = "/diskC/tongyao/datasets/phoenix2014-release/phoenix-2014-multisigner/features/fullFrame-210x260px/dev"
+test_video_root = "/diskC/tongyao/datasets/phoenix2014-release/phoenix-2014-multisigner/features/fullFrame-210x260px/test"
+train_anno_file = "/diskC/tongyao/datasets/phoenix2014-release/phoenix-2014-multisigner/annotations/manual/train.corpus.csv"
+dev_anno_file = "/diskC/tongyao/datasets/phoenix2014-release/phoenix-2014-multisigner/annotations/manual/dev.corpus.csv"
+test_anno_file = "/diskC/tongyao/datasets/phoenix2014-release/phoenix-2014-multisigner/annotations/manual/test.corpus.csv"
 
 model_path = "./checkpoint"
 create_path(model_path)
@@ -38,8 +38,10 @@ sum_path = "runs/phoenix_seq2seq/{:%Y-%m-%d_%H-%M-%S}".format(datetime.now())
 writer = SummaryWriter(sum_path)
 
 # Use specific gpus
-os.environ["CUDA_VISIBLE_DEVICES"]="2"
+# os.environ["CUDA_VISIBLE_DEVICES"]="2"
 # Device setting
+if torch.cuda.is_available():
+    print("using gpu as device")
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Hyperparams
@@ -68,7 +70,7 @@ if __name__ == '__main__':
                 tokenizer_language='de')
 
 
-    root = '/mnt/data/public/datasets'
+    root = '/diskC/tongyao'
     csv_dir = os.path.join(root, 'phoenix2014-release/phoenix-2014-multisigner')
     csv_dir = os.path.join(csv_dir, 'annotations/manual/train.corpus.csv')
     csv_file = pd.read_csv(csv_dir)
@@ -144,6 +146,7 @@ if __name__ == '__main__':
             'state_dict': model.state_dict(),
             'best': best_wer
         }, is_best, model_path, store_name)
+        print("best wer is {}".format(best_wer))
         print("Epoch {} Model Saved".format(epoch+1).center(60, '#'))
 
     print("Training Finished".center(60, '#'))
