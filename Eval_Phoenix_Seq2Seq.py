@@ -16,12 +16,12 @@ from utils.ioUtils import *
 from utils.textUtils import build_dictionary,reverse_phoenix_dictionary
 
 # Path setting
-train_video_root = "/mnt/data/public/datasets/phoenix2014-release/phoenix-2014-multisigner/features/fullFrame-210x260px/train"
-dev_video_root = "/mnt/data/public/datasets/phoenix2014-release/phoenix-2014-multisigner/features/fullFrame-210x260px/dev"
-test_video_root = "/mnt/data/public/datasets/phoenix2014-release/phoenix-2014-multisigner/features/fullFrame-210x260px/test"
-train_anno_file = "/mnt/data/public/datasets/phoenix2014-release/phoenix-2014-multisigner/annotations/manual/train.corpus.csv"
-dev_anno_file = "/mnt/data/public/datasets/phoenix2014-release/phoenix-2014-multisigner/annotations/manual/dev.corpus.csv"
-test_anno_file = "/mnt/data/public/datasets/phoenix2014-release/phoenix-2014-multisigner/annotations/manual/test.corpus.csv"
+train_video_root = "/diskC/tongyao/phoenix2014-release/phoenix-2014-multisigner/features/fullFrame-210x260px/train"
+dev_video_root = "/diskC/tongyao/phoenix2014-release/phoenix-2014-multisigner/features/fullFrame-210x260px/dev"
+test_video_root = "/diskC/tongyao/phoenix2014-release/phoenix-2014-multisigner/features/fullFrame-210x260px/test"
+train_anno_file = "/diskC/tongyao/phoenix2014-release/phoenix-2014-multisigner/annotations/manual/train.corpus.csv"
+dev_anno_file = "/diskC/tongyao/phoenix2014-release/phoenix-2014-multisigner/annotations/manual/dev.corpus.csv"
+test_anno_file = "/diskC/tongyao/phoenix2014-release/phoenix-2014-multisigner/annotations/manual/test.corpus.csv"
 
 model_path = "./checkpoint"
 create_path(model_path)
